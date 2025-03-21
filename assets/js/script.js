@@ -41,8 +41,17 @@ document.addEventListener("DOMContentLoaded", () => {
         turnDisplay.textContent = `Player ${currentPlayer}'s Turn`;
     }
     
-    
+    function restartGame() {
+        board.fill("","");
+        gameActive = true;
+        currentPlayer = "X";
+        winnerDisplay.textContent = "";
+        turnDisplay.textContent = "Player X's Turn";
+        cells.forEach(cell => cell.textContent = "");
+    }
     
     cells.forEach(cell => cell.addEventListener("click", handleCellClick));
-   
+    restartBtn.addEventListener("click", restartGame);
+    
+    turnDisplay.textContent = "Player X's Turn";
 });
