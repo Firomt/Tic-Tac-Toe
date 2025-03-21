@@ -14,6 +14,20 @@ document.addEventListener("DOMContentLoaded", () => {
         [0, 4, 8], [2, 4, 6]
     ];
     
+    function checkWinner() {
+        for (let condition of winConditions) {
+            const [a, b, c] = condition;
+            if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                gameActive = false;
+                winnerDisplay.textContent = `${board[a]} Wins!`;
+                return;
+            }
+        }
+        if (!board.includes("")) {
+            gameActive = false;
+            winnerDisplay.textContent = "It's a Draw!";
+        }
+    }
     
     function handleCellClick(event) {
         const index = event.target.getAttribute("cellIndex");
@@ -27,8 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
         turnDisplay.textContent = `Player ${currentPlayer}'s Turn`;
     }
     
-   
+    
     
     cells.forEach(cell => cell.addEventListener("click", handleCellClick));
-    
+   
 });
